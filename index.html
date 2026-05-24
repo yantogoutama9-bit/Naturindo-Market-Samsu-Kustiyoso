@@ -1,1 +1,1489 @@
-a
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATURINDO | KTH Samsu Kustiyoso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f7f4;
+            --surface: #ffffff;
+            --text: #0f2e23;
+            --text-secondary: #4a6b5a;
+            --text-muted: #8da898;
+            --border: #d4e8d4;
+            --border-hover: #b8d8b8;
+            --accent: #1a3c2f;
+            --accent-hover: #0f2e23;
+            --gold: #2d5a45;
+            --gold-light: #4a7c5e;
+            --mint: #e8f5e9;
+            --success: #1a5c3a;
+            --warning: #b8860b;
+            --danger: #8b1e1e;
+            --shadow-sm: 0 1px 2px 0 rgb(15 46 35 / 0.04);
+            --shadow: 0 4px 6px -1px rgb(15 46 35 / 0.05), 0 2px 4px -2px rgb(15 46 35 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(15 46 35 / 0.06), 0 4px 6px -4px rgb(15 46 35 / 0.06);
+            --shadow-xl: 0 20px 25px -5px rgb(15 46 35 / 0.08), 0 8px 10px -6px rgb(15 46 35 / 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
+
+        /* Header */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(244,247,244,0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        nav {
+            max-width: 1280px; margin: 0 auto; padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif; font-size: 1.6rem;
+            font-weight: 700; color: var(--accent); letter-spacing: 2px; text-decoration: none;
+        }
+        .logo span { color: var(--gold-light); font-weight: 400; }
+        .nav-cart {
+            position: relative; cursor: pointer; padding: 0.5rem;
+            background: none; border: none; display: flex; align-items: center; gap: 0.5rem;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        .nav-cart:hover { color: var(--accent); }
+        .nav-cart svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+        .cart-badge {
+            position: absolute; top: 0; right: 0;
+            background: var(--accent); color: #fff; font-size: 0.65rem;
+            font-weight: 700; width: 18px; height: 18px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 72px; padding: 5rem 2rem 3rem; text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+            position: relative;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--gold-light), var(--accent));
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 600;
+            letter-spacing: -0.02em; margin-bottom: 0.75rem; color: var(--accent);
+        }
+        .hero p {
+            color: var(--text-secondary); font-size: 1.05rem; max-width: 520px;
+            margin: 0 auto; font-weight: 400;
+        }
+        .hero-line {
+            width: 48px; height: 2px; background: var(--gold-light); margin: 1.5rem auto;
+            border-radius: 1px;
+        }
+
+        /* ========== DOWNLOAD SECTION ========== */
+        .download-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem 2rem;
+        }
+        .download-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .download-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .download-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--mint);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .download-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+        }
+        .download-content {
+            flex: 1;
+        }
+        .download-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+        .download-content p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.5rem;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .download-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+        }
+        @media (max-width: 640px) {
+            .download-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Products */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem 4rem; }
+        .section-title {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; color: var(--accent);
+        }
+        .section-title::after {
+            content: ''; flex: 1; height: 1px; background: var(--border);
+        }
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+        }
+        .product-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 6px; overflow: hidden; cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            display: flex; flex-direction: column;
+        }
+        .product-card:hover {
+            border-color: var(--border-hover); box-shadow: var(--shadow-xl);
+            transform: translateY(-4px);
+        }
+        .product-image-wrap { overflow: hidden; position: relative; aspect-ratio: 4/5; }
+        .product-image {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .product-card:hover .product-image { transform: scale(1.05); }
+        .product-badge {
+            position: absolute; top: 1rem; left: 1rem;
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 0.3rem 0.8rem; font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 1.5px; font-weight: 600; color: var(--gold);
+            border-radius: 3px;
+        }
+        .product-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+        .product-name {
+            font-family: 'Playfair Display', serif; font-size: 1.2rem;
+            font-weight: 600; margin-bottom: 0.35rem; color: var(--accent);
+        }
+        .product-code {
+            font-size: 0.75rem; color: var(--text-muted); font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px; margin-bottom: 0.75rem;
+        }
+        .product-desc {
+            font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;
+            margin-bottom: 1rem; flex: 1;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 0.75rem; border-top: 1px solid var(--border);
+        }
+        .product-price {
+            font-size: 1.05rem; font-weight: 700; color: var(--gold); letter-spacing: -0.01em;
+        }
+        .btn-add {
+            width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--border);
+            background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; color: var(--gold);
+        }
+        .btn-add:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+        /* Quick View Modal */
+        .quick-overlay {
+            position: fixed; inset: 0; background: rgba(15,46,35,0.5); z-index: 1500;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+            display: flex; align-items: center; justify-content: center; padding: 2rem;
+        }
+        .quick-overlay.active { opacity: 1; pointer-events: all; }
+        .quick-modal {
+            background: var(--surface); max-width: 800px; width: 100%;
+            border-radius: 8px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr;
+            box-shadow: var(--shadow-xl); transform: scale(0.95); transition: transform 0.3s;
+            max-height: 85vh; overflow-y: auto;
+        }
+        .quick-overlay.active .quick-modal { transform: scale(1); }
+        .quick-image { width: 100%; height: 100%; object-fit: cover; min-height: 400px; }
+        .quick-content { padding: 2.5rem; display: flex; flex-direction: column; }
+        .quick-close {
+            position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            z-index: 10; transition: all 0.2s; color: var(--text-secondary);
+        }
+        .quick-close:hover { background: var(--bg); color: var(--accent); transform: rotate(90deg); }
+        .quick-category {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--gold-light); font-weight: 600; margin-bottom: 0.75rem;
+        }
+        .quick-title {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700;
+            color: var(--accent); margin-bottom: 0.5rem;
+        }
+        .quick-code {
+            font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .quick-price {
+            font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 1.25rem;
+        }
+        .quick-desc {
+            font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .btn-quick-add {
+            margin-top: auto; padding: 1rem; background: var(--accent); color: #fff;
+            border: none; font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+            cursor: pointer; border-radius: 4px; transition: all 0.3s;
+        }
+        .btn-quick-add:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+        /* Cart Drawer */
+        .cart-overlay {
+            position: fixed; inset: 0; background: rgba(15,46,35,0.4); z-index: 2000;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .cart-overlay.active { opacity: 1; pointer-events: all; }
+        .cart-drawer {
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 460px;
+            height: 100%; background: var(--surface); z-index: 2001;
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            display: flex; flex-direction: column; border-left: 1px solid var(--border);
+        }
+        .cart-drawer.active { transform: translateX(0); }
+        .cart-header {
+            padding: 1.5rem; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .cart-header h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); }
+        .btn-close {
+            width: 36px; height: 36px; border: none; background: var(--bg);
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s; color: var(--text-secondary);
+        }
+        .btn-close:hover { background: var(--border); color: var(--accent); }
+        .cart-body { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+        .cart-empty {
+            text-align: center; padding: 3rem 1rem; color: var(--text-muted);
+        }
+        .cart-empty svg { margin-bottom: 1rem; stroke: var(--border-hover); }
+        .cart-item {
+            display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border);
+        }
+        .cart-item img { width: 72px; height: 90px; object-fit: cover; border-radius: 3px; }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: var(--accent); }
+        .cart-item-code { font-size: 0.7rem; color: var(--text-muted); font-family: monospace; }
+        .cart-item-price { font-weight: 700; color: var(--gold); margin-top: 0.5rem; }
+        .cart-item-qty {
+            display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;
+        }
+        .qty-btn-sm {
+            width: 24px; height: 24px; border: 1px solid var(--border); background: transparent;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; border-radius: 3px; transition: all 0.2s; color: var(--text);
+        }
+        .qty-btn-sm:hover { border-color: var(--accent); background: var(--mint); }
+        .cart-item-remove {
+            font-size: 0.75rem; color: var(--danger); cursor: pointer; margin-top: 0.5rem;
+            background: none; border: none; text-decoration: underline; text-underline-offset: 2px;
+        }
+        .cart-footer {
+            padding: 1.5rem; border-top: 1px solid var(--border); background: var(--bg);
+        }
+        .cart-total-row {
+            display: flex; justify-content: space-between; margin-bottom: 1rem;
+            font-size: 0.9rem; color: var(--text-secondary);
+        }
+        .cart-total-row.final {
+            font-size: 1.15rem; font-weight: 700; color: var(--accent);
+            padding-top: 0.75rem; border-top: 1px solid var(--border);
+        }
+        .btn-primary {
+            width: 100%; padding: 1rem; background: var(--accent); color: #fff;
+            border: none; font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+            cursor: pointer; border-radius: 4px; transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        /* Checkout Overlay */
+        .checkout-overlay {
+            position: fixed; inset: 0; background: rgba(244,247,244,0.97);
+            backdrop-filter: blur(8px); z-index: 3000; overflow-y: auto;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .checkout-overlay.active { opacity: 1; pointer-events: all; }
+        .checkout-container {
+            max-width: 720px; margin: 2rem auto; padding: 0 1.5rem 3rem;
+            animation: slideUp 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .checkout-header {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-top: 1rem;
+        }
+        .checkout-header h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); }
+        .btn-back {
+            padding: 0.5rem 1rem; background: var(--bg); border: 1px solid var(--border);
+            font-family: 'Inter', sans-serif; font-size: 0.8rem; cursor: pointer;
+            border-radius: 4px; transition: all 0.2s; color: var(--text-secondary);
+        }
+        .btn-back:hover { border-color: var(--accent); color: var(--accent); }
+
+        .checkout-grid { display: grid; gap: 1.5rem; }
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.5rem;
+        }
+        .card-title {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px;
+            font-weight: 700; color: var(--text-muted); margin-bottom: 1.25rem;
+        }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group:last-child { margin-bottom: 0; }
+        .form-label {
+            display: block; font-size: 0.8rem; font-weight: 600;
+            margin-bottom: 0.4rem; color: var(--accent);
+        }
+        .form-label .required { color: var(--danger); margin-left: 2px; }
+        .form-input, .form-textarea {
+            width: 100%; padding: 0.85rem 1rem; background: var(--bg);
+            border: 1px solid var(--border); border-radius: 4px;
+            font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text);
+            outline: none; transition: all 0.2s;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--gold-light); background: #fff;
+            box-shadow: 0 0 0 3px rgba(45,90,69,0.08);
+        }
+        .form-textarea { resize: vertical; min-height: 80px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        /* Bank Selection */
+        .bank-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .bank-option {
+            display: flex; align-items: center; gap: 1rem; padding: 1rem;
+            border: 1.5px solid var(--border); border-radius: 6px; cursor: pointer;
+            transition: all 0.2s; background: transparent;
+        }
+        .bank-option:hover { border-color: var(--border-hover); background: var(--mint); }
+        .bank-option.selected {
+            border-color: var(--accent); background: rgba(26,60,47,0.04);
+        }
+        .bank-radio {
+            width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .bank-option.selected .bank-radio {
+            border-color: var(--accent); background: var(--accent);
+        }
+        .bank-radio::after {
+            content: ''; width: 6px; height: 6px; background: #fff; border-radius: 50%;
+            opacity: 0; transform: scale(0); transition: all 0.2s;
+        }
+        .bank-option.selected .bank-radio::after { opacity: 1; transform: scale(1); }
+        .bank-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; color: var(--accent); }
+        .bank-info p { font-size: 0.8rem; color: var(--text-secondary); }
+        .bank-detail {
+            margin-top: 1rem; padding: 1rem; background: var(--mint); border-radius: 6px;
+            border: 1px solid var(--border); display: none;
+        }
+        .bank-detail.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .bank-detail-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.5rem 0; font-size: 0.9rem;
+        }
+        .bank-detail-row:not(:last-child) { border-bottom: 1px solid var(--border); }
+        .copy-btn {
+            font-size: 0.75rem; padding: 0.35rem 0.75rem; background: #fff;
+            border: 1px solid var(--border); cursor: pointer; border-radius: 3px;
+            transition: all 0.2s; color: var(--text-secondary);
+        }
+        .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .copy-btn.copied { background: var(--success); color: #fff; border-color: var(--success); }
+
+        /* Drag & Drop */
+        .drop-zone {
+            border: 2px dashed var(--border); border-radius: 8px;
+            padding: 2.5rem 1.5rem; text-align: center; cursor: pointer;
+            transition: all 0.3s; background: var(--bg); position: relative;
+        }
+        .drop-zone:hover, .drop-zone.dragover {
+            border-color: var(--accent); background: rgba(26,60,47,0.03);
+        }
+        .drop-zone-icon { margin-bottom: 0.75rem; }
+        .drop-zone-icon svg { stroke: var(--text-muted); width: 40px; height: 40px; }
+        .drop-zone-text { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+        .drop-zone-hint { font-size: 0.75rem; color: var(--text-muted); }
+        .file-input { display: none; }
+        .file-preview {
+            display: none; margin-top: 1rem; padding: 1rem;
+            background: #fff; border: 1px solid var(--border); border-radius: 4px;
+            align-items: center; gap: 1rem;
+        }
+        .file-preview.active { display: flex; }
+        .file-thumb {
+            width: 56px; height: 56px; object-fit: cover; border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+        .file-meta { flex: 1; }
+        .file-name { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.15rem; word-break: break-all; }
+        .file-size { font-size: 0.75rem; color: var(--text-muted); }
+        .file-remove {
+            width: 28px; height: 28px; border: none; background: var(--bg);
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: var(--danger); transition: background 0.2s;
+        }
+        .file-remove:hover { background: #FEE2E2; }
+
+        /* Order Summary */
+        .summary-item {
+            display: flex; justify-content: space-between; padding: 0.6rem 0;
+            font-size: 0.9rem; color: var(--text-secondary);
+        }
+        .summary-item.total {
+            margin-top: 0.5rem; padding-top: 0.75rem; border-top: 2px solid var(--border);
+            font-size: 1.1rem; font-weight: 700; color: var(--accent);
+        }
+        .summary-products { margin-bottom: 0.5rem; }
+        .summary-product {
+            display: flex; justify-content: space-between; font-size: 0.85rem;
+            padding: 0.4rem 0; color: var(--text-secondary);
+        }
+        .summary-product span:first-child { max-width: 70%; }
+
+        /* Success / Invoice */
+        .success-overlay {
+            position: fixed; inset: 0; background: var(--bg); z-index: 4000;
+            overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+        }
+        .success-overlay.active { opacity: 1; pointer-events: all; }
+        .success-container {
+            max-width: 640px; margin: 0 auto; padding: 3rem 1.5rem;
+            animation: slideUp 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+        .success-icon {
+            width: 72px; height: 72px; margin: 0 auto 1.5rem;
+            background: var(--success); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .success-icon svg { stroke: #fff; width: 32px; height: 32px; }
+        .success-title {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem;
+            text-align: center; margin-bottom: 0.5rem; color: var(--accent);
+        }
+        .success-sub {
+            text-align: center; color: var(--text-secondary); margin-bottom: 2rem;
+        }
+        .invoice-box {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 8px; padding: 2rem; margin-bottom: 2rem;
+        }
+        .invoice-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .invoice-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+        .invoice-brand span { color: var(--gold-light); }
+        .invoice-status {
+            display: inline-block; padding: 0.35rem 0.75rem;
+            background: #FEF3C7; color: var(--warning); font-size: 0.75rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            border-radius: 3px;
+        }
+        .invoice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .invoice-block h4 {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--text-muted); margin-bottom: 0.5rem;
+        }
+        .invoice-block p { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+        .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+        .invoice-table th {
+            text-align: left; font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--text-muted); padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .invoice-table td { padding: 0.75rem 0; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+        .invoice-table td:last-child, .invoice-table th:last-child { text-align: right; }
+        .invoice-table tr:last-child td { border-bottom: 2px solid var(--border); font-weight: 700; color: var(--accent); }
+        .invoice-total {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 0.5rem;
+        }
+        .invoice-total-label { font-size: 0.9rem; color: var(--text-secondary); }
+        .invoice-total-value { font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+        .invoice-note {
+            margin-top: 1.5rem; padding: 1rem; background: var(--mint); border-radius: 4px;
+            font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;
+            border-left: 3px solid var(--gold-light);
+        }
+        .success-actions {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+        }
+        .btn-wa {
+            flex: 1; min-width: 200px; padding: 1rem;
+            background: var(--success); color: #fff; border: none;
+            font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+            cursor: pointer; border-radius: 4px; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-wa:hover { background: #166534; transform: translateY(-1px); }
+        .btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+        .btn-secondary {
+            flex: 1; min-width: 200px; padding: 1rem;
+            background: transparent; color: var(--accent); border: 1.5px solid var(--border);
+            font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+            cursor: pointer; border-radius: 4px; transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: var(--accent); background: var(--mint); }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: var(--accent); color: #fff; padding: 0.9rem 1.5rem;
+            border-radius: 4px; font-size: 0.9rem; font-weight: 500;
+            box-shadow: var(--shadow-xl); z-index: 5000; opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1); pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .invoice-grid { grid-template-columns: 1fr; }
+            .success-actions { flex-direction: column; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .product-image-wrap { aspect-ratio: 3/4; }
+            .quick-modal { grid-template-columns: 1fr; }
+            .quick-image { min-height: 250px; }
+        }
+/* ========== FOOTER ========== */
+.site-footer {
+    background: linear-gradient(135deg, #1a5c1a 0%, #2d8a2d 100%);
+    color: #fff;
+    padding: 40px 20px 20px;
+    margin-top: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-section h3 {
+    color: #ffd700;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ffd700;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.footer-section p, .footer-section a {
+    color: #e0e0e0;
+    text-decoration: none;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+.footer-section a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+/* ========== WHATSAPP FLOATING BUTTON ========== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
+
+.whatsapp-tooltip {
+    position: fixed;
+    bottom: 95px;
+    right: 25px;
+    background: #333;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.whatsapp-float:hover + .whatsapp-tooltip {
+    opacity: 1;
+}
+
+@keyframes pulse-whatsapp {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<<header>
+    <nav>
+        <a href="#" class="logo" onclick="resetApp()">NATURINDO<span>.</span>HERBAL</a>
+        <button class="nav-cart" onclick="toggleCart()">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Keranjang</span>
+            <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+        </button>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-line"></div>
+    <h1>Koleksi Eksklusif</h1>
+    <p>Kurasi terpilih untuk mereka yang menghargai kesehatan tanpa kompromi. Pesan sekarang, bayar via transfer bank.</p>
+</section>
+
+<!-- ========== KOLOM DOWNLOAD KATALOG ========== -->
+<section class="download-section">
+    <div class="download-card">
+        <div class="download-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="download-content">
+            <h3>Buku Fit</h3>
+            <p>Unduh Buku Fit PDF untuk melihat detail lengkap semua produk herbal Naturindo, dan manfaatnya.</p>
+        </div>
+        <a href="Buku-Fit.pdf" download class="download-btn">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Unduh PDF
+        </a>
+    </div>
+</section>
+
+<div class="container">
+    <h3 class="section-title">Produk Terbaru</h3>
+    <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- Quick View Modal -->
+<div class="quick-overlay" id="quickOverlay" onclick="closeQuick(event)">
+    <button class="quick-close" onclick="closeQuick()" style="position:absolute;top:1.5rem;right:1.5rem;">&times;</button>
+    <div class="quick-modal" onclick="event.stopPropagation()">
+        <img src="" alt="" class="quick-image" id="quickImage">
+        <div class="quick-content">
+            <div class="quick-category" id="quickCategory"></div>
+            <h2 class="quick-title" id="quickTitle"></h2>
+            <div class="quick-code" id="quickCode"></div>
+            <div class="quick-price" id="quickPrice"></div>
+            <p class="quick-desc" id="quickDesc"></p>
+            <button class="btn-quick-add" id="quickAddBtn" onclick="">
+                Tambah ke Keranjang
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h2>Keranjang Belanja</h2>
+        <button class="btn-close" onclick="toggleCart()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <div class="cart-body" id="cartBody">
+        <div class="cart-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <p>Keranjang masih kosong</p>
+        </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+        <div class="cart-total-row">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">Rp 0</span>
+        </div>
+        <div class="cart-total-row final">
+            <span>Total</span>
+            <span id="cartTotal">Rp 0</span>
+        </div>
+        <button class="btn-primary" onclick="openCheckout()">Lanjutkan Pembayaran</button>
+    </div>
+</div>
+
+<!-- Checkout Overlay -->
+<div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <button class="btn-back" onclick="closeCheckout()">&larr; Kembali</button>
+            <h2>Pembayaran</h2>
+        </div>
+        <div class="checkout-grid">
+            <!-- Customer Data -->
+            <div class="card">
+                <div class="card-title">Data Pengiriman</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nama Lengkap <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="cName" placeholder="Nama penerima">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nomor Telepon <span class="required">*</span></label>
+                        <input type="tel" class="form-input" id="cPhone" placeholder="08xxxxxxxxxx">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Alamat Lengkap <span class="required">*</span></label>
+                    <textarea class="form-textarea" id="cAddress" placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos"></textarea>
+                </div>
+            </div>
+
+            <!-- Bank Transfer -->
+            <div class="card">
+                <div class="card-title">Transfer Bank <span class="required">*</span></div>
+                <div class="bank-list" id="bankList"></div>
+                <div class="bank-detail" id="bankDetail"></div>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.75rem;">
+                    * Harap transfer sesuai total yang tertera. Kami tidak menerima pembayaran COD.
+                </p>
+            </div>
+
+            <!-- Proof Upload -->
+            <div class="card">
+                <div class="card-title">Bukti Transfer <span class="required">*</span></div>
+                <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                    <div class="drop-zone-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    </div>
+                    <div class="drop-zone-text">Drag & drop bukti transfer di sini</div>
+                    <div class="drop-zone-hint">atau klik untuk pilih file (JPG, PNG, max 5MB)</div>
+                    <input type="file" class="file-input" id="fileInput" accept="image/*" onchange="handleFile(this.files[0])">
+                </div>
+                <div class="file-preview" id="filePreview">
+                    <img src="" alt="" class="file-thumb" id="fileThumb">
+                    <div class="file-meta">
+                        <div class="file-name" id="fileName"></div>
+                        <div class="file-size" id="fileSize"></div>
+                    </div>
+                    <button class="file-remove" onclick="removeFile()" title="Hapus">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="card">
+                <div class="card-title">Ringkasan Pesanan</div>
+                <div class="summary-products" id="summaryProducts"></div>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span id="sumSubtotal">Rp 0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Ongkir</span>
+                    <span style="color:var(--success);font-weight:600;">GRATIS</span>
+                </div>
+                <div class="summary-item total">
+                    <span>Total Pembayaran</span>
+                    <span id="sumTotal">Rp 0</span>
+                </div>
+                <button class="btn-primary" style="margin-top:1.5rem;" onclick="submitOrder()">
+                    Konfirmasi Pembayaran
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success / Invoice -->
+<div class="success-overlay" id="successOverlay">
+    <div class="success-container">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 class="success-title">Pesanan Berhasil Dibuat</h2>
+        <p class="success-sub">Tim kami akan memverifikasi bukti transfer Anda dalam 1x24 jam.</p>
+
+        <div class="invoice-box" id="invoiceBox"></div>
+
+        <div class="success-actions">
+            <button class="btn-wa" id="btnWa" onclick="sendToWA()">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                Kirim ke WhatsApp
+            </button>
+            <button class="btn-secondary" onclick="resetApp()">Belanja Lagi</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===================== DATA =====================
+const BANK_ACCOUNTS = [
+    { id: 'bca', name: 'BCA', number: '535-021-7420', holder: ''Samsu Kustiyoso },
+];
+
+const PRODUCTS = [
+    {
+        id: 1, name: "Soya Sirup", code: "SUP1", price: 160000,
+        image: "SUP1.jpg",
+        category: "Suplemen",
+        description: "Meningkatkan daya tahan tubuh, Menambah asupan nutrisi pada anak, Meringankan demam, batuk & pilek."
+    },
+    {
+        id: 2, name: "Soya Capsule", code: "SUP2", price: 160000,
+        image: "SUP2.jpg",
+        category: "Suplemen",
+        description: "Meningkatkan daya tahan tubuh, Meringankan asupan nutrisi pada anak, Meringankan demam, batuk & pilek."
+    },
+    {
+        id: 3, name: "Met Fit", code: "SUP3", price: 150000,
+        image: "SUP3.jpg",
+        category: "Suplemen",
+        description: "Meningkatkan daya tahan tubuh, Menjaga metabolisme tubuh, Menambah nafsu makan,  Mencegah radikal bebas."
+    },
+    {
+        id: 4, name: "Staminofit", code: "KRS1", price: 150000,
+        image: "KRS1.jpg",
+        category: "Pekerja Keras",
+        description: "Membantu memelihara stamina pria, Membantu meningkatkan gairah & vitalitas pria, Meringankan kualitas sperma pada pria"
+    },
+    {
+        id: 5, name: "Prosela", code: "PS1", price: 150000,
+        image: "PS1.jpg",
+        category: "Pasca Sakit",
+        description: "Membantu menyembuhkan luka dalam/luar, Meregenerasi sel tubuh pasca operasi,  Memperbaiki sel tubuh yang rusak."
+    },
+    {
+        id: 6, name: "Carsifit", code: "PS2", price: 150000,
+        image: "PS2.jpg",
+        category: "Pasca Sakit",
+        description: "Merawat kesehatan pasca stroke,  Mencegah stroke, Menurunkan lemak jahat dalam darah, Melancarkan peredaran darah, Menurunkan hipertensi. "
+    },
+    {
+        id: 7, name: "Brainovit", code: "AR1", price: 150000,
+        image: "AR1.jpg",
+        category: "Anak & Remaja",
+        description: "Meningkatkan daya ingat & konsentrasi,  Anti depresan alami, Memelihara performa otak."
+    },
+    {
+        id: 8, name: "Cabone", code: "AR2", price: 150000,
+        image: "AR2.jpg",
+        category: "Anak & Remaja",
+        description: "Memenuhi kebutuhan kalsium untuk tulang, Menguatkan tulang & gigi, Merangsang hormon pertumbuhan,  Membantu penyembuhan gangguan tulang."
+    },
+    {
+        id: 9, name: "Azzahra", code: "KW1", price: 150000,
+        image: "KW1.jpg",
+        category: "Kewanitaan",
+        description: "Merawat organ kewanitaan, Mencegah jamur & bakteri pada organ kewanitaan, Mengurangi nyeri saat haid."
+    },
+    {
+        id: 10, name: "Herb 4-Slim", code: "KW2", price: 150000,
+        image: "KW2.jpg",
+        category: "Kewanitaan",
+        description: "Menurunkan berat badan, Membantu mengurangi lemak tubuh, Melancarkan buang air besar & kecil."
+    },
+    {
+        id: 11, name: "Cysto Up", code: "KW3", price: 150000,
+        image: "KW3.jpg",
+        category: "Kewanitaan",
+        description: "Membantu penyembuhan myom & kista, Membantu mengatasi gangguan menstruasi."
+    },
+    {
+        id: 12, name: "Biolipid", code: "PD1", price: 150000,
+        image: "PD1.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Mengurangi lemak jahat dalam darah, Menurunkan kadar kolesterol. "
+    },
+    {
+        id: 13, name: "Carcinofit", code: "PD2", price: 150000,
+        image: "PD2.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Menghambat pertumbuhan sel kanker, Mengurangi nyeri & bengkak, Mencegah radikal bebas."
+    },
+    {
+        id: 14, name: "Cardiafit", code: "PD3", price: 150000,
+        image: "PD3.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Memelihara kesehatan jantung, Melancarkan peredaran darah, Melebarkan pembuluh darah."
+    },
+    {
+        id: 15, name: "Forheuma", code: "PD4", price: 150000,
+        image: "PD4.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Meredakan pegal linu & nyeri sendi akibat rematik, Mengurangi bengkak akibat rematik."
+    },
+    {
+        id: 16, name: "Glucofit", code: "PD5", price: 150000,
+        image: "PD5.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Membantu meringankan kencing manis, Menurunkan kadar gula, Meningkatkan produksi insulin."
+    },
+    {
+        id: 17, name: "Hemocare", code: "PD6", price: 150000,
+        image: "PD6.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Membantu meringankan wasir, Mengurangi nyeri akibat wasir, Mengurangi bengkak akibat wasir, Memperlancar BAB."
+    },
+    {
+        id: 18, name: "Uricofit", code: "PD7", price: 150000,
+        image: "PD7.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Menurunkan kadar asam urat, Mengurangi bengkak akibat asam urat, Melancarkan buang air kecil."
+    },
+    {
+        id: 19, name: "Hermifit", code: "PD8", price: 150000,
+        image: "PD8.jpg",
+        category: "Penyakit Degeneratif",
+        description: "Meredakan sakit kepala akibat vertigo/migrain, Mencegah mual & muntah."
+    },
+    {
+        id: 20, name: "Bron C Fit", code: "PK1", price: 150000,
+        image: "PK1.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Merawat kesehatan paru-paru & sistem pernapasan,  Membantu meringankan batuk, demam & asma, Mengencerkan dahak."
+    },
+    {
+        id: 21, name: "Hepatifit", code: "PK2", price: 150000,
+        image: "PK2.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Memelihara kesehatan hati, Mengurangi pembengkakan pada hati, Meningkatkan kekebalan tubuh."
+    },
+    {
+        id: 22, name: "Joint Nature", code: "PK3", price: 150000,
+        image: "PK3.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Memenuhi kebutuhan kalsium untuk tulang, Meredakan  nyeri  sendi, Melumasi  persediaan, Meredakan  bengkak  pada sendi."
+    },
+    {
+        id: 23, name: "BV Flow", code: "PK4", price: 150000,
+        image: "PK4.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Melancarkan peredaran darah, Mencegah penggumpalan darah,  Melebarkan pembuluh darah."
+    },
+    {
+        id: 24, name: "Hitenfit", code: "PK5", price: 150000,
+        image: "PK5.jpg",
+        category: "Perawatan Kesehatan",
+        description: ",Meringankan tekanan darah tinggi, Mengurangi nyeri akibat hipertensi,  Melebarkan pembuluh darah"
+    },
+    {
+        id: 25, name: "Mucosafit", code: "PK6", price: 150000,
+        image: "PK6.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Meringankan gangguan pencernaan, mengatasi  maag, asam lambung, kembung, diare."
+    },
+    {
+        id: 26, name: "Stenosifit", code: "PK7", price: 150000,
+        image: "PK7.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Merawat kesehatan tulang belakang, Melenturkan otot pinggang, Mengurangi nyeri punggung. "
+    },
+    {
+        id: 27, name: "Urinofit", code: "PK8", price: 150000,
+        image: "PK8.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Merawat kesehatan ginjal, Meluruhkan batu ginjal, Melancarkan buang air kecil."
+    },
+    {
+        id: 28, name: "Pos-K", code: "PK9", price: 150000,
+        image: "PK9.jpg",
+        category: "Perawatan Kesehatan",
+        description: "Meredakan bengkak dan nyeri, Mengatasi inflamasi, Meredakan gatal pada kulit."
+    }
+];
+
+let cart = [];
+let selectedBank = null;
+let proofFile = null;
+let currentOrder = null;
+
+// ===================== UTILS =====================
+const formatPrice = p => 'Rp ' + p.toLocaleString('id-ID');
+const showToast = msg => {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+};
+
+// ===================== PRODUCTS =====================
+function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = PRODUCTS.map((p, i) => `
+        <div class="product-card" style="animation:fadeIn 0.5s ${i*0.08}s both" onclick="openQuick(${p.id})">
+            <div class="product-image-wrap">
+                <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                <span class="product-badge">${p.category}</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">${p.name}</h3>
+                <div class="product-code">${p.code}</div>
+                <p class="product-desc">${p.description}</p>
+                <div class="product-footer">
+                    <span class="product-price">${formatPrice(p.price)}</span>
+                    <button class="btn-add" onclick="event.stopPropagation(); addToCart(${p.id});">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// ===================== QUICK VIEW =====================
+function openQuick(pid) {
+    const p = PRODUCTS.find(x => x.id === pid);
+    if (!p) return;
+    document.getElementById('quickImage').src = p.image;
+    document.getElementById('quickCategory').textContent = p.category;
+    document.getElementById('quickTitle').textContent = p.name;
+    document.getElementById('quickCode').textContent = p.code;
+    document.getElementById('quickPrice').textContent = formatPrice(p.price);
+    document.getElementById('quickDesc').textContent = p.description;
+    document.getElementById('quickAddBtn').onclick = () => { addToCart(p.id); closeQuick(); };
+    const ov = document.getElementById('quickOverlay');
+    ov.style.display = 'flex'; setTimeout(() => ov.classList.add('active'), 10);
+    document.body.style.overflow = 'hidden';
+}
+
+function closeQuick(e) {
+    if (e && e.target !== e.currentTarget) return;
+    const ov = document.getElementById('quickOverlay');
+    ov.classList.remove('active');
+    setTimeout(() => { ov.style.display = 'none'; document.body.style.overflow = ''; }, 300);
+}
+
+// ===================== CART =====================
+function addToCart(pid) {
+    const item = cart.find(c => c.id === pid);
+    if (item) { item.qty++; }
+    else { cart.push({ ...PRODUCTS.find(p => p.id === pid), qty: 1 }); }
+    updateCartUI();
+    showToast('Produk ditambahkan ke keranjang');
+}
+
+function updateQty(pid, delta) {
+    const item = cart.find(c => c.id === pid);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty < 1) cart = cart.filter(c => c.id !== pid);
+    updateCartUI();
+}
+
+function removeFromCart(pid) {
+    cart = cart.filter(c => c.id !== pid);
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const badge = document.getElementById('cartBadge');
+    const totalQty = cart.reduce((s, c) => s + c.qty, 0);
+    badge.textContent = totalQty;
+    badge.style.display = totalQty ? 'flex' : 'none';
+
+    const body = document.getElementById('cartBody');
+    const footer = document.getElementById('cartFooter');
+    if (!cart.length) {
+        body.innerHTML = `
+            <div class="cart-empty">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <p>Keranjang masih kosong</p>
+            </div>`;
+        footer.style.display = 'none'; return;
+    }
+    footer.style.display = 'block';
+    body.innerHTML = cart.map(c => `
+        <div class="cart-item">
+            <img src="${c.image}" alt="${c.name}">
+            <div class="cart-item-info">
+                <div class="cart-item-name">${c.name}</div>
+                <div class="cart-item-code">${c.code}</div>
+                <div class="cart-item-price">${formatPrice(c.price * c.qty)}</div>
+                <div class="cart-item-qty">
+                    <button class="qty-btn-sm" onclick="updateQty(${c.id}, -1)">-</button>
+                    <span style="font-size:0.85rem;font-weight:600;width:24px;text-align:center;">${c.qty}</span>
+                    <button class="qty-btn-sm" onclick="updateQty(${c.id}, 1)">+</button>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${c.id})">Hapus</button>
+            </div>
+        </div>
+    `).join('');
+
+    const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
+    document.getElementById('cartSubtotal').textContent = formatPrice(subtotal);
+    document.getElementById('cartTotal').textContent = formatPrice(subtotal);
+}
+
+function toggleCart() {
+    const overlay = document.getElementById('cartOverlay');
+    const drawer = document.getElementById('cartDrawer');
+    overlay.classList.toggle('active');
+    drawer.classList.toggle('active');
+}
+
+// ===================== CHECKOUT =====================
+function openCheckout() {
+    if (!cart.length) { showToast('Keranjang masih kosong'); return; }
+    toggleCart();
+    renderBankList();
+    renderSummary();
+    document.getElementById('checkoutOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCheckout() {
+    document.getElementById('checkoutOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function renderBankList() {
+    const list = document.getElementById('bankList');
+    list.innerHTML = BANK_ACCOUNTS.map(b => `
+        <div class="bank-option" onclick="selectBank('${b.id}')" id="bank-${b.id}">
+            <div class="bank-radio"></div>
+            <div class="bank-info">
+                <h4>Transfer ${b.name}</h4>
+                <p>${b.holder}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+function selectBank(bid) {
+    selectedBank = BANK_ACCOUNTS.find(b => b.id === bid);
+    document.querySelectorAll('.bank-option').forEach(el => el.classList.remove('selected'));
+    document.getElementById(`bank-${bid}`).classList.add('selected');
+    const detail = document.getElementById('bankDetail');
+    detail.classList.add('active');
+    detail.innerHTML = `
+        <div class="bank-detail-row"><span>No. Rekening</span><div style="display:flex;gap:0.5rem;align-items:center;"><strong>${selectedBank.number}</strong><button class="copy-btn" onclick="copyText('${selectedBank.number}', this)">Salin</button></div></div>
+        <div class="bank-detail-row"><span>Atas Nama</span><strong>${selectedBank.holder}</strong></div>
+        <div class="bank-detail-row"><span>Total Transfer</span><strong style="color:var(--gold);font-size:1.05rem;">${formatPrice(cart.reduce((s,c)=>s+c.price*c.qty,0))}</strong></div>
+    `;
+}
+
+function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Tersalin'; btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Salin'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+function renderSummary() {
+    const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
+    document.getElementById('summaryProducts').innerHTML = cart.map(c => `
+        <div class="summary-product"><span>${c.name} (x${c.qty})</span><span>${formatPrice(c.price * c.qty)}</span></div>
+    `).join('');
+    document.getElementById('sumSubtotal').textContent = formatPrice(subtotal);
+    document.getElementById('sumTotal').textContent = formatPrice(subtotal);
+}
+
+// ===================== DRAG & DROP =====================
+const dropZone = document.getElementById('dropZone');
+['dragenter','dragover','dragleave','drop'].forEach(e => {
+    dropZone.addEventListener(e, ev => { ev.preventDefault(); ev.stopPropagation(); });
+});
+['dragenter','dragover'].forEach(e => {
+    dropZone.addEventListener(e, () => dropZone.classList.add('dragover'));
+});
+['dragleave','drop'].forEach(e => {
+    dropZone.addEventListener(e, () => dropZone.classList.remove('dragover'));
+});
+dropZone.addEventListener('drop', e => handleFile(e.dataTransfer.files[0]));
+
+function handleFile(file) {
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { showToast('Hanya file gambar yang diperbolehkan'); return; }
+    if (file.size > 5 * 1024 * 1024) { showToast('Ukuran file maksimal 5MB'); return; }
+    proofFile = file;
+    const reader = new FileReader();
+    reader.onload = e => {
+        document.getElementById('fileThumb').src = e.target.result;
+        document.getElementById('fileName').textContent = file.name;
+        document.getElementById('fileSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
+        document.getElementById('filePreview').classList.add('active');
+        dropZone.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeFile() {
+    proofFile = null;
+    document.getElementById('fileInput').value = '';
+    document.getElementById('filePreview').classList.remove('active');
+    dropZone.style.display = 'block';
+}
+
+// ===================== SUBMIT =====================
+function submitOrder() {
+    const name = document.getElementById('cName').value.trim();
+    const phone = document.getElementById('cPhone').value.trim();
+    const address = document.getElementById('cAddress').value.trim();
+    const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
+
+    if (!name || !phone || !address) { showToast('Lengkapi data pengiriman terlebih dahulu'); return; }
+    if (!selectedBank) { showToast('Pilih bank tujuan transfer'); return; }
+    if (!proofFile) { showToast('Upload bukti transfer wajib'); return; }
+    if (!cart.length) { showToast('Keranjang kosong'); return; }
+
+    const orderId = 'NATURINDO-' + new Date().toISOString().slice(2,10).replace(/-/g,'') + '-' + Math.floor(1000 + Math.random()*9000);
+    currentOrder = {
+        id: orderId, date: new Date().toLocaleString('id-ID'),
+        customer: { name, phone, address },
+        items: cart.map(c => ({ ...c })),
+        bank: selectedBank, total: subtotal,
+        status: 'MENUNGGU VERIFIKASI'
+    };
+
+    const history = JSON.parse(localStorage.getItem('luxe_orders') || '[]');
+    history.push(currentOrder);
+    localStorage.setItem('luxe_orders', JSON.stringify(history));
+
+    renderInvoice();
+    closeCheckout();
+    document.getElementById('successOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function renderInvoice() {
+    const o = currentOrder;
+    const box = document.getElementById('invoiceBox');
+    box.innerHTML = `
+        <div class="invoice-header">
+            <div>
+                <div class="invoice-brand">NATURINDO<span>.</span>MARKET</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem;">${o.date}</div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.25rem;">Order ID</div>
+                <div style="font-family:monospace;font-weight:700;font-size:1rem;">${o.id}</div>
+                <div class="invoice-status" style="margin-top:0.5rem;">${o.status}</div>
+            </div>
+        </div>
+        <div class="invoice-grid">
+            <div class="invoice-block">
+                <h4>Dikirim Kepada</h4>
+                <p><strong>${o.customer.name}</strong><br>${o.customer.phone}<br>${o.customer.address}</p>
+            </div>
+            <div class="invoice-block">
+                <h4>Metode Pembayaran</h4>
+                <p>Transfer ${o.bank.name}<br>${o.bank.number}<br>a/n ${o.bank.holder}</p>
+            </div>
+        </div>
+        <table class="invoice-table">
+            <thead><tr><th>Produk</th><th style="text-align:center;">Qty</th><th>Total</th></tr></thead>
+            <tbody>
+                ${o.items.map(i => `<tr><td>${i.name}<br><span style="font-size:0.75rem;color:var(--text-muted);">${i.code}</span></td><td style="text-align:center;">${i.qty}</td><td>${formatPrice(i.price * i.qty)}</td></tr>`).join('')}
+                <tr><td colspan="2">Total Pembayaran</td><td style="color:var(--gold);font-weight:700;">${formatPrice(o.total)}</td></tr>
+            </tbody>
+        </table>
+        <div class="invoice-note">
+            <strong>Catatan Penting:</strong><br>
+            Kami tidak menerima pembayaran COD. Pesanan akan diproses setelah bukti transfer diverifikasi oleh tim kami. 
+            Silakan kirim bukti transfer ke WhatsApp admin jika diperlukan.
+        </div>
+    `;
+}
+
+function sendToWA() {
+    if (!currentOrder) return;
+    const o = currentOrder;
+    const itemsText = o.items.map(i => `- ${i.name} (${i.qty}x) = ${formatPrice(i.price * i.qty)}`).join('%0A');
+    const msg = `Halo Naturindo Market, saya telah melakukan pembayaran untuk pesanan berikut:%0A%0A` +
+        `*Order ID:* ${o.id}%0A` +
+        `*Nama:* ${o.customer.name}%0A` +
+        `*Alamat:* ${o.customer.address}%0A` +
+        `*Telepon:* ${o.customer.phone}%0A%0A` +
+        `*Detail Pesanan:*%0A${itemsText}%0A%0A` +
+        `*Total:* ${formatPrice(o.total)}%0A` +
+        `*Bank:* ${o.bank.name} (${o.bank.number})%0A%0A` +
+        `Mohon verifikasi pembayaran saya. Terima kasih.`;
+    window.open(`https://wa.me/628562811444?text=${msg}`, '_blank');
+}
+
+function resetApp() {
+    cart = []; selectedBank = null; proofFile = null; currentOrder = null;
+    document.getElementById('cName').value = '';
+    document.getElementById('cPhone').value = '';
+    document.getElementById('cAddress').value = '';
+    removeFile();
+    document.querySelectorAll('.bank-option').forEach(el => el.classList.remove('selected'));
+    document.getElementById('bankDetail').classList.remove('active');
+    document.getElementById('successOverlay').classList.remove('active');
+    document.getElementById('checkoutOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+    updateCartUI();
+    renderProducts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+    
+// ===================== INIT =====================
+renderProducts();
+updateCartUI();
+</script>
+
+<!-- FOOTER -->
+<<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Naturindo Market</h3>
+            <p>Produk herbal berkualitas untuk kesehatan keluarga Anda. Terbuat dari bahan alami pilihan dengan sertifikasi Halal.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Kontak</h3>
+            <p>📱 WhatsApp: <a href="https://wa.me/628562811444" target="_blank">0856-<2811-444/a></p>
+            <p>📧 Email: <a href="mailto:tokoonline.naturindosolo@gmail.com">tokoonline.naturindosolo@gmail.com</a></p>
+            <p>📍 Surakarta, Indonesia</p>
+        </div>
+        <div class="footer-section">
+            <h3>Jam Operasional</h3>
+            <p>Senin - Sabtu: 09.00 - 17.00</p>
+            <p>Minggu: Tutup / Sesuai Janji</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Naturindo Market. All Rights Reserved. | Dibuat oleh Samsu Kustiyoso</p>
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/628813967332?text=Halo%20Naturindo%2C%20saya%20tertarik%20dengan%20produk%20Anda" 
+   class="whatsapp-float" 
+   target="_blank" 
+   aria-label="Chat WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+<div class="whatsapp-tooltip">Chat dengan kami!</div>
+
+</body>
+</html>
